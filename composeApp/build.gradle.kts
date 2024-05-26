@@ -1,5 +1,3 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
@@ -43,7 +41,9 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
 
             implementation(libs.androidx.navigation.compose)
-//            implementation((libs.kotlinx.serialization))
+            implementation((libs.kotlinx.serialization))
+            implementation(compose.material3)
+
         }
     }
 
