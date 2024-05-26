@@ -15,7 +15,7 @@ import androidx.navigation.NavHostController
 @Composable
 fun FavoriteScreen(navHostController: NavHostController) {
     Column(
-        modifier = Modifier.fillMaxSize().background(Color.Green),
+        modifier = Modifier.fillMaxSize().background(Color.DarkGray),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {

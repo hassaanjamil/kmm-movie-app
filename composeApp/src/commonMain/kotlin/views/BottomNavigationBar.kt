@@ -1,4 +1,4 @@
-package components.main
+package views
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -28,10 +28,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import data.BottomNavigationItem
 import data.Screens
-import views.FavoriteScreen
-import views.HomeScreen
-import views.ProfileScreen
 
 @Composable
 fun BottomNavigationBar() {

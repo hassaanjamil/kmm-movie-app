@@ -1,11 +1,10 @@
-package components.main
+package data
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.ui.graphics.vector.ImageVector
-import data.Screens
 
 //initializing the data class with default parameters
 data class BottomNavigationItem(

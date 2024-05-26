@@ -1,7 +1,7 @@
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import components.main.BottomNavigationBar
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import views.BottomNavigationBar
 
 @Composable
 @Preview
