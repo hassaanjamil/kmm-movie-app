@@ -10,14 +10,13 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 
 @Composable
-fun HomeScreen(navHostController: NavHostController) {
+fun FavoriteScreen(navHostController: NavHostController) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text("Home Screen")
-        // TODO Movie List Screen with 2 columns and pagination
+        Text("Favorite Screen")
 //        Button(modifier = Modifier.padding(vertical = 10.dp),
 //            onClick = { navHostController.navigate(Route.Profile.name) }) {
 //            Text("Next")
