@@ -2,7 +2,7 @@
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
-import components.home.BottomNavigationBar
+import components.main.BottomNavigationBar
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
