@@ -33,6 +33,8 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
+            implementation(compose.components.resources)
+
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.ui)
@@ -53,7 +55,7 @@ android {
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    sourceSets["main"].res.srcDirs("src/androidMain/res")
+    sourceSets["main"].res.srcDirs("src/commonMain/resources", "src/androidMain/res")
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
     defaultConfig {
@@ -80,5 +82,11 @@ android {
     dependencies {
         debugImplementation(libs.compose.ui.tooling)
     }
+}
+
+compose.resources {
+    publicResClass = true
+    packageOfResClass = "com.app.kmm.movieapp.resources"
+    generateResClass = always
 }
 

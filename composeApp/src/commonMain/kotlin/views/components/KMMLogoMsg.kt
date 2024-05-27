@@ -6,8 +6,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import kmmmovieapp.composeapp.generated.resources.Res
-import kmmmovieapp.composeapp.generated.resources.compose_multiplatform
+import com.app.kmm.movieapp.resources.Res
+import com.app.kmm.movieapp.resources.compose_multiplatform
 import org.jetbrains.compose.resources.painterResource
 
 @Composable

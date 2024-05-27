@@ -9,8 +9,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.app.kmm.movieapp.resources.MontserratAlternates_Bold
+import com.app.kmm.movieapp.resources.Res
+import org.jetbrains.compose.resources.Font
 
 @Composable
 fun HomeScreen(navHostController: NavHostController) {
@@ -20,7 +24,12 @@ fun HomeScreen(navHostController: NavHostController) {
         verticalArrangement = Arrangement.Center
     ) {
         // TODO Movie List Screen with 2 columns and pagination
-        Text("Home Screen", color = Color.White, fontSize = 18.sp)
+        Text(
+            "Home Screen",
+            color = Color.White,
+            fontSize = 22.sp,
+            fontFamily = FontFamily(Font(Res.font.MontserratAlternates_Bold))
+        )
         // navHostController.navigate(Route.Profile.name)
     }
 }
