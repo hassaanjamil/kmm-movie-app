@@ -1,13 +1,12 @@
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import views.BottomNavigationBar
+import views.components.navigation.MainNavigator
+import views.components.theme.AppTheme
 
 @Composable
 @Preview
 fun App() {
-    MaterialTheme {
-//        HomeNavigator()
-        BottomNavigationBar()
+    AppTheme {
+        MainNavigator()
     }
 }
