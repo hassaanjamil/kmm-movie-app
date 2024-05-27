@@ -5,8 +5,11 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.text.font.FontFamily
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import com.app.kmm.movieapp.resources.MontserratAlternates_Regular
+import com.app.kmm.movieapp.resources.Res
 import data.BottomNavigationItem
 
 @Composable
@@ -22,7 +25,12 @@ fun MyNavigationBar(
                 //iterating all items with their respective indexes
                 NavigationBarItem(
                     selected = index == navigationSelectedItem,
-                    label = { Text(navigationItem.label) },
+                    label = {
+                        Text(
+                            navigationItem.label,
+                            fontFamily = FontFamily(org.jetbrains.compose.resources.Font(Res.font.MontserratAlternates_Regular))
+                        )
+                    },
                     icon = {
                         Icon(
                             navigationItem.icon,

@@ -15,11 +15,12 @@ import androidx.navigation.NavHostController
 import com.app.kmm.movieapp.resources.MontserratAlternates_Bold
 import com.app.kmm.movieapp.resources.Res
 import org.jetbrains.compose.resources.Font
+import views.components.theme.primaryDark
 
 @Composable
 fun ProfileScreen(navHostController: NavHostController) {
     Column(
-        modifier = Modifier.fillMaxSize().background(Color.Blue),
+        modifier = Modifier.fillMaxSize().background(primaryDark),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
