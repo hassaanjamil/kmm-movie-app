@@ -11,9 +11,10 @@ import androidx.navigation.NavHostController
 import com.app.kmm.movieapp.resources.MontserratAlternates_Regular
 import com.app.kmm.movieapp.resources.Res
 import data.BottomNavigationItem
+import org.jetbrains.compose.resources.Font
 
 @Composable
-fun MyNavigationBar(
+fun MyBottomNavigationBar(
     navController: NavHostController,
     navigationSelectedItem: Int,
     updateNavigationIndex: (Int) -> Unit,
@@ -28,7 +29,7 @@ fun MyNavigationBar(
                     label = {
                         Text(
                             navigationItem.label,
-                            fontFamily = FontFamily(org.jetbrains.compose.resources.Font(Res.font.MontserratAlternates_Regular))
+                            fontFamily = FontFamily(Font(Res.font.MontserratAlternates_Regular))
                         )
                     },
                     icon = {

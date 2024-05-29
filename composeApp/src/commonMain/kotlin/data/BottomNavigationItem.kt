@@ -19,17 +19,17 @@ data class BottomNavigationItem(
             BottomNavigationItem(
                 label = "Home",
                 icon = Icons.Filled.Home,
-                route = Screens.Home.route
+                route = Routes.Home.route
             ),
             BottomNavigationItem(
                 label = "Favorite",
                 icon = Icons.Filled.Favorite,
-                route = Screens.Search.route
+                route = Routes.Search.route
             ),
             BottomNavigationItem(
                 label = "Profile",
                 icon = Icons.Filled.AccountCircle,
-                route = Screens.Profile.route
+                route = Routes.Profile.route
             ),
         )
     }

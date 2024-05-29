@@ -3,33 +3,30 @@ package views.components.navigation
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
+import views.viewModels.HomeViewModel
 
 @Composable
-fun MainNavigator() {
+fun MainNavigator(viewModel: HomeViewModel = viewModel { HomeViewModel() }) {
     // by using the rememberNavController() we can get the instance of the navController
     val navController = rememberNavController()
-    //initializing the default selected item
-    var navigationSelectedItem by remember {
-        mutableStateOf(0)
-    }
+    val stateNavigationIndex: State<Int> = viewModel.navigationIndex.collectAsState();
 
     //scaffold to hold our bottom navigation Bar
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = {
-            MyTopBar(navigationSelectedItem)
+            MyTopBar(stateNavigationIndex.value)
         },
         bottomBar = {
-            MyNavigationBar(
+            MyBottomNavigationBar(
                 navController,
-                navigationSelectedItem = navigationSelectedItem
+                navigationSelectedItem = stateNavigationIndex.value
             ) { index ->
-                navigationSelectedItem = index
+                viewModel.setNavigationIndex(index)
             }
         }
     ) { paddingValues ->

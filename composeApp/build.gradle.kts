@@ -43,7 +43,8 @@ kotlin {
 
             implementation(compose.material3)
             implementation(libs.androidx.navigation.compose)
-            implementation((libs.kotlinx.serialization))
+            implementation(libs.kotlinx.serialization)
+            implementation(libs.lifecycle.viewmodel.compose)
         }
     }
 

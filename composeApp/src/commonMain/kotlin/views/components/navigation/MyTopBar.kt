@@ -16,6 +16,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import com.app.kmm.movieapp.resources.MontserratAlternates_Regular
 import com.app.kmm.movieapp.resources.Res
 import data.BottomNavigationItem
+import org.jetbrains.compose.resources.Font
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -31,8 +32,7 @@ fun MyTopBar(navigationSelectedItem: Int) {
                 BottomNavigationItem().bottomNavigationItems()[navigationSelectedItem].label,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-
-                fontFamily = FontFamily(org.jetbrains.compose.resources.Font(Res.font.MontserratAlternates_Regular))
+                fontFamily = FontFamily(Font(Res.font.MontserratAlternates_Regular))
             )
         },
         navigationIcon = {
