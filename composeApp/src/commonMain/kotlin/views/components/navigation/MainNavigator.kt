@@ -8,10 +8,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
-import views.viewModels.HomeViewModel
+import views.viewModels.MainViewModel
 
 @Composable
-fun MainNavigator(viewModel: HomeViewModel = viewModel { HomeViewModel() }) {
+fun MainNavigator(viewModel: MainViewModel = viewModel { MainViewModel() }) {
     // by using the rememberNavController() we can get the instance of the navController
     val navController = rememberNavController()
     val stateNavigationIndex: State<Int> = viewModel.navigationIndex.collectAsState();

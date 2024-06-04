@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class HomeViewModel : ViewModel() {
+class MainViewModel : ViewModel() {
     private val _navigationIndex = MutableStateFlow(0)
     val navigationIndex: StateFlow<Int> = _navigationIndex.asStateFlow()
 
