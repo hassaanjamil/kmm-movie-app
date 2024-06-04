@@ -21,7 +21,7 @@ fun MyNavHost(navController: NavHostController, paddingValues: PaddingValues) {
     ) {
         composable(Routes.Home.route) {
             //call our composable screens here
-            HomeScreen(navController)
+            HomeScreen()
         }
         composable(Routes.Search.route) {
             //call our composable screens here
