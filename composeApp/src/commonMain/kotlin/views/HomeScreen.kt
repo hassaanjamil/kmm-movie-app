@@ -32,7 +32,8 @@ fun HomeScreen(viewModel: HomeViewModel = androidx.lifecycle.viewmodel.compose.v
         LaunchedEffect(true) {
             scope.launch {
                 try {
-                    viewModel.setApiResponse(viewModel.fetchApiResponse("https://ktor.io/docs/"))
+                    val response = viewModel.fetchApiResponse("https://ktor.io/docs/")
+                    viewModel.setApiResponse(response)
                 } catch (e: Exception) {
                     viewModel.setApiResponse(e.message ?: "error")
                 }

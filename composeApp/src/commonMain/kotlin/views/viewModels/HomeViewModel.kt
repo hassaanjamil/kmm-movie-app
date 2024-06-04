@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import respository.HomeRepository
+import repository.HomeRepository
 
 class HomeViewModel : ViewModel() {
     private val _navigationIndex = MutableStateFlow(0)
