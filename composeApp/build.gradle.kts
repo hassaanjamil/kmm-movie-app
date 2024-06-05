@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
-//    alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.kotlinSerialization)
 //    alias(libs.plugins.kotlin.serialization)
 }
 
@@ -43,6 +43,9 @@ kotlin {
 
             implementation(libs.ktor.client.core)
             implementation(libs.kotlinx.coroutines.core)
+
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialzation.kotlinx.json)
         }
 
         androidMain.dependencies {

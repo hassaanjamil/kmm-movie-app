@@ -1,6 +1,7 @@
 package views.viewModels
 
 import androidx.lifecycle.ViewModel
+import data.response.MovieResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,7 +23,10 @@ class HomeViewModel : ViewModel() {
     }
 
     private val homeRepository = HomeRepository()
-    suspend fun fetchApiResponse(url: String): String {
-        return homeRepository.fetchApiResponse(url)
+    suspend fun fetchApiResponse(
+        url: String,
+        hashMap: HashMap<String, String> = hashMapOf(),
+    ): MovieResponse {
+        return homeRepository.fetchApiResponse(url, hashMap)
     }
 }

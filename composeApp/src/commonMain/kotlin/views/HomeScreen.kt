@@ -4,6 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,20 +34,29 @@ fun HomeScreen(viewModel: HomeViewModel = androidx.lifecycle.viewmodel.compose.v
         LaunchedEffect(true) {
             scope.launch {
                 try {
-                    val response = viewModel.fetchApiResponse("https://ktor.io/docs/")
-                    viewModel.setApiResponse(response)
+                    val params = hashMapOf(
+                        "language" to "en-US",
+                        "page" to "1",
+                        "api_key" to "5b16101d466cdc0b3d0314c28dfb420b"
+                    )
+                    val response = viewModel.fetchApiResponse(
+                        "https://api.themoviedb.org/3/person/popular",
+                        params
+                    )
+                    response.let { viewModel.setApiResponse(it.results[0].originalName.toString()) }
                 } catch (e: Exception) {
                     viewModel.setApiResponse(e.message ?: "error")
                 }
             }
         }
+        val scrollState = rememberScrollState()
         // TODO Movie List Screen with 2 columns and pagination
         Text(
+            modifier = Modifier.verticalScroll(scrollState),
             text = viewModel.apiResponse.collectAsState().value,
             style = MaterialTheme.typography.bodyLarge,
             color = Color.White,
             fontFamily = FontFamily(Font(Res.font.MontserratAlternates_Bold))
         )
-        // navHostController.navigate(Route.Profile.name)
     }
 }
