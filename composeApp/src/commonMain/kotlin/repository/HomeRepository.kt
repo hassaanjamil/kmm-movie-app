@@ -32,7 +32,6 @@ class HomeRepository {
             url {
                 params.forEach { (key, value) ->
                     parameters.append(key, value)
-                    println(key)
                 }
             }
             method = HttpMethod.Get

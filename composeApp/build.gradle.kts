@@ -46,6 +46,8 @@ kotlin {
 
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialzation.kotlinx.json)
+
+            implementation(libs.kamel.image)
         }
 
         androidMain.dependencies {
@@ -78,6 +80,9 @@ android {
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
+    }
+    buildFeatures {
+        buildConfig = true
     }
     packaging {
         resources {

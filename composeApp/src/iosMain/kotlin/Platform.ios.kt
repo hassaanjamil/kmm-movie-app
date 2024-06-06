@@ -26,3 +26,7 @@ actual fun font(name: String, res: String, weight: FontWeight, style: FontStyle)
         androidx.compose.ui.text.platform.Font(res, byteArray, weight, style)
     }
 }
+
+actual fun getApiKey(): String {
+    return "5b16101d466cdc0b3d0314c28dfb420b"
+}

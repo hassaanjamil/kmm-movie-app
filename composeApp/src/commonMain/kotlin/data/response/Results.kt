@@ -7,12 +7,17 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Results(
     var adult: Boolean? = null,
-    var gender: Int? = null,
+    @SerialName("backdrop_path") var backdropPath: String? = null,
+    @SerialName("gender_ids") var genderIds: List<Int>? = null,
     var id: Int? = null,
-    @SerialName("known_for_department") var knownForDepartment: String? = null,
-    var name: String? = null,
-    @SerialName("original_name") var originalName: String? = null,
+    @SerialName("original_language") var originalLanguage: String? = null,
+    @SerialName("original_title") var originalTitle: String? = null,
+    var overview: String? = null,
     var popularity: Double? = null,
-    @SerialName("profile_path") var profilePath: String? = null,
-    @SerialName("known_for") var knownFor: ArrayList<KnownFor> = arrayListOf(),
+    @SerialName("poster_path") var posterPath: String? = null,
+    @SerialName("release_date") var releaseDate: String? = null,
+    var title: String? = null,
+    var video: Boolean? = null,
+    @SerialName("vote_average") var voteAverage: Double? = null,
+    @SerialName("vote_count") var voteCount: Int? = null,
 )

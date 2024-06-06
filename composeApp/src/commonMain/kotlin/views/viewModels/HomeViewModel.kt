@@ -17,9 +17,14 @@ class HomeViewModel : ViewModel() {
 
     private val _apiResponse = MutableStateFlow("Loading")
     val apiResponse: StateFlow<String> = _apiResponse.asStateFlow()
-
     fun setApiResponse(response: String) {
         _apiResponse.value = response
+    }
+
+    private val _movieResponse = MutableStateFlow(MovieResponse())
+    var movieResponse: StateFlow<MovieResponse> = _movieResponse.asStateFlow()
+    fun setMovieResponse(response: MovieResponse) {
+        _movieResponse.value = response
     }
 
     private val homeRepository = HomeRepository()

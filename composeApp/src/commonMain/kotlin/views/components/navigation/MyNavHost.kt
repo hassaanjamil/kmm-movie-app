@@ -25,11 +25,11 @@ fun MyNavHost(navController: NavHostController, paddingValues: PaddingValues) {
         }
         composable(Routes.Search.route) {
             //call our composable screens here
-            FavoriteScreen(navController)
+            FavoriteScreen()
         }
         composable(Routes.Profile.route) {
             //call our composable screens here
-            ProfileScreen(navController)
+            ProfileScreen()
         }
     }
 }

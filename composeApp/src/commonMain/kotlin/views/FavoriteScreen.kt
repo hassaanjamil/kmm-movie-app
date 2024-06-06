@@ -11,14 +11,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
-import androidx.navigation.NavHostController
 import com.app.kmm.movieapp.resources.MontserratAlternates_Bold
 import com.app.kmm.movieapp.resources.Res
 import org.jetbrains.compose.resources.Font
 import views.components.theme.primaryDark
 
 @Composable
-fun FavoriteScreen(navHostController: NavHostController) {
+fun FavoriteScreen() {
     Column(
         modifier = Modifier.fillMaxSize().background(primaryDark),
         horizontalAlignment = Alignment.CenterHorizontally,
