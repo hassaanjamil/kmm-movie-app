@@ -49,7 +49,6 @@ fun fetchPopularMovies(viewModel: HomeViewModel) {
                     "https://api.themoviedb.org/3/movie/popular",
                     params
                 )
-                println(response)
                 response.let { viewModel.setMovieResponse(it) }
             } catch (e: Exception) {
                 viewModel.setApiResponse(e.message ?: "error")
