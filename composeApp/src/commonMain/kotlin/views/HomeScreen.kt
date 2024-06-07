@@ -19,6 +19,11 @@ import views.viewModels.HomeViewModel
 
 @Composable
 fun HomeScreen(viewModel: HomeViewModel = androidx.lifecycle.viewmodel.compose.viewModel { HomeViewModel() }) {
+
+    fun handleFavoritePress(id: Int, favorite: Boolean) {
+        viewModel.setMovieItemFavorite(id, favorite)
+    }
+
     Column(
         modifier = Modifier.fillMaxSize().background(primaryDark),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -26,9 +31,11 @@ fun HomeScreen(viewModel: HomeViewModel = androidx.lifecycle.viewmodel.compose.v
     ) {
         fetchPopularMovies(viewModel)
         val movieResponse = viewModel.movieResponse.collectAsState().value
-        LazyColumn {
+        LazyColumn() {
             items(items = movieResponse.results) { item ->
-                MovieItem(item)
+                MovieItem(item, onFavoritePress = { id, isFavorite ->
+                    handleFavoritePress(id, isFavorite)
+                })
             }
         }
     }
@@ -39,20 +46,15 @@ fun fetchPopularMovies(viewModel: HomeViewModel) {
     val scope = rememberCoroutineScope()
     LaunchedEffect(true) {
         scope.launch {
-            try {
-                val params = hashMapOf(
-                    "language" to "en-US",
-                    "page" to "1",
-                    "api_key" to "5b16101d466cdc0b3d0314c28dfb420b"
-                )
-                val response = viewModel.fetchApiResponse(
-                    "https://api.themoviedb.org/3/movie/popular",
-                    params
-                )
-                response.let { viewModel.setMovieResponse(it) }
-            } catch (e: Exception) {
-                viewModel.setApiResponse(e.message ?: "error")
-            }
+            val params = hashMapOf(
+                "language" to "en-US",
+                "page" to "1",
+                "api_key" to "5b16101d466cdc0b3d0314c28dfb420b"
+            )
+            viewModel.fetchApiResponse(
+                "https://api.themoviedb.org/3/movie/popular",
+                params
+            )
         }
     }
 }

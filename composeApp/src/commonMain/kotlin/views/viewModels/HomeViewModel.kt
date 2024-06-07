@@ -10,7 +10,6 @@ import repository.HomeRepository
 class HomeViewModel : ViewModel() {
     private val _navigationIndex = MutableStateFlow(0)
     val navigationIndex: StateFlow<Int> = _navigationIndex.asStateFlow()
-
     fun setNavigationIndex(index: Int) {
         _navigationIndex.value = index
     }
@@ -27,11 +26,33 @@ class HomeViewModel : ViewModel() {
         _movieResponse.value = response
     }
 
+    fun setMovieItemFavorite(id: Int, favorite: Boolean) {
+        // Get the current movie response
+        val currentResponse = _movieResponse.value.copy()
+
+        // Update the list of movies with the new favorite status for the specified movie
+        currentResponse.results = currentResponse.results.map { movie ->
+            if (movie.id == id) {
+                movie.copy(isFavorite = favorite)
+            } else {
+                movie
+            }
+        }
+
+        // Set the updated movie response
+        setMovieResponse(currentResponse)
+    }
+
     private val homeRepository = HomeRepository()
     suspend fun fetchApiResponse(
         url: String,
         hashMap: HashMap<String, String> = hashMapOf(),
-    ): MovieResponse {
-        return homeRepository.fetchApiResponse(url, hashMap)
+    ) {
+        try {
+            val response = homeRepository.fetchApiResponse(url, hashMap)
+            setMovieResponse(response)
+        } catch (e: Exception) {
+            setApiResponse(e.message ?: "error")
+        }
     }
 }

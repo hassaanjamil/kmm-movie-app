@@ -20,4 +20,5 @@ data class Results(
     var video: Boolean? = null,
     @SerialName("vote_average") var voteAverage: Double? = null,
     @SerialName("vote_count") var voteCount: Int? = null,
+    var isFavorite: Boolean = false,
 )
