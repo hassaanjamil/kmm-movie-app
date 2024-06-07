@@ -31,7 +31,7 @@ fun HomeScreen(viewModel: HomeViewModel = androidx.lifecycle.viewmodel.compose.v
     ) {
         fetchPopularMovies(viewModel)
         val movieResponse = viewModel.movieResponse.collectAsState().value
-        LazyColumn() {
+        LazyColumn {
             items(items = movieResponse.results) { item ->
                 MovieItem(item, onFavoritePress = { id, isFavorite ->
                     handleFavoritePress(id, isFavorite)
