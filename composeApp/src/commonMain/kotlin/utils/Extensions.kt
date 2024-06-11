@@ -14,7 +14,7 @@ fun Movie.toMovieDto(): MovieDto {
         this.name,
         this.image,
         this.year ?: "",
-        "".getCurrentDateTimeStamp(),
+        getCurrentDateTimeStamp(),
         if (this.isFavorite == true) 1 else 0
     )
 }
@@ -29,12 +29,12 @@ fun Results.toMovieDto(): MovieDto {
         this.title!!,
         this.posterPath!!,
         this.releaseDate ?: "",
-        "".getCurrentDateTimeStamp(),
+        getCurrentDateTimeStamp(),
         if (this.isFavorite) 1 else 0
     )
 }
 
-fun String.getCurrentDateTimeStamp(): String {
+fun getCurrentDateTimeStamp(): String {
     val currentMoment = Clock.System.now()
     val datetime = currentMoment.toLocalDateTime(TimeZone.currentSystemDefault())
     return "${datetime.date} ${
