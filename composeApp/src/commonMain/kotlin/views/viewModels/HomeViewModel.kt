@@ -1,11 +1,14 @@
 package views.viewModels
 
 import androidx.lifecycle.ViewModel
+import data.db.DriverFactory
+import data.db.MovieDatabase
 import data.response.MovieResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import repository.HomeRepository
+import utils.toMovieDto
 
 class HomeViewModel : ViewModel() {
     private val _navigationIndex = MutableStateFlow(0)
@@ -22,14 +25,15 @@ class HomeViewModel : ViewModel() {
 
     private val _movieResponse = MutableStateFlow(MovieResponse())
     var movieResponse: StateFlow<MovieResponse> = _movieResponse.asStateFlow()
-    fun setMovieResponse(response: MovieResponse) {
+
+    val db = MovieDatabase(DriverFactory().createDriver())
+    private fun setMovieResponse(response: MovieResponse) {
         _movieResponse.value = response
     }
 
     fun setMovieItemFavorite(id: Int, favorite: Boolean) {
         // Get the current movie response
         val currentResponse = _movieResponse.value.copy()
-
         // Update the list of movies with the new favorite status for the specified movie
         currentResponse.results = currentResponse.results.map { movie ->
             if (movie.id == id) {
@@ -38,9 +42,21 @@ class HomeViewModel : ViewModel() {
                 movie
             }
         }
-
         // Set the updated movie response
         setMovieResponse(currentResponse)
+
+        // Insert favorite into db
+        val favorite = currentResponse.results.find { it.id == id }
+        if (favorite != null) {
+            val favMovieDb = db.getMovieById(favorite.id?.toLong()!!)
+            if (favMovieDb == null) {
+                db.insertFavoriteMovie(favorite.toMovieDto())
+            } else {
+                db.deleteFavoriteMovie(favorite.id?.toLong()!!)
+            }
+        }
+
+        println(db.getAllFavoriteMovies())
     }
 
     private val homeRepository = HomeRepository()

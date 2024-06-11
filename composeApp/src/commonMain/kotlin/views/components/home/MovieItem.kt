@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Favorite
@@ -88,7 +89,7 @@ fun MovieItem(data: Results, onFavoritePress: (id: Int, favorite: Boolean) -> Un
                     Icon(
                         imageVector = if (data.isFavorite) Icons.Rounded.Favorite else Icons.Rounded.FavoriteBorder,
                         contentDescription = stringResource(Res.string.favorite),
-                        modifier = Modifier.padding(5.dp).clickable {
+                        modifier = Modifier.size(30.dp).clickable {
                             isFavorite = !isFavorite
                             onFavoritePress(data.id!!, isFavorite)
                         },

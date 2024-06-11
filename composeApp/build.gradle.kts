@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.kotlinSerialization)
-//    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.sqldelight)
 }
 
 kotlin {
@@ -35,6 +35,7 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+            implementation(libs.kotlinx.datetime)
 
             implementation(compose.material3)
             implementation(libs.androidx.navigation.compose)
@@ -48,6 +49,12 @@ kotlin {
             implementation(libs.ktor.serialzation.kotlinx.json)
 
             implementation(libs.kamel.image)
+
+            implementation(libs.koin.core)
+
+            // SQLDelight
+            implementation(libs.coroutines.extensions)
+            implementation(libs.stately.common) // Needed by SQLDelight
         }
 
         androidMain.dependencies {
@@ -56,10 +63,18 @@ kotlin {
 
             implementation(libs.ktor.client.okhttp)
             implementation(libs.kotlinx.coroutines.android)
+
+            // AndroidX
+            implementation(libs.androidx.startup.runtime)
+            // SQLDelight
+            implementation(libs.sqldelight.android.driver)
         }
 
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+
+            // SQLDelight
+            implementation(libs.sqldelight.native.driver)
         }
     }
 
@@ -107,5 +122,18 @@ compose.resources {
     publicResClass = true
     packageOfResClass = "com.app.kmm.movieapp.resources"
     generateResClass = always
+}
+
+repositories {
+    google()
+    mavenCentral()
+}
+
+sqldelight {
+    databases {
+        create("Database") {
+            packageName.set("data.db")
+        }
+    }
 }
 

@@ -15,7 +15,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import data.Greeting
-import data.Movie
 
 @Composable
 fun SampleApp() {
@@ -28,7 +27,7 @@ fun SampleApp() {
                 if(showContent)
                     randomName = names.random()
             }) {
-                Movie("M1", "http://", "4.5")
+//                Movie("M1", "http://", "4.5")
                 Text("Click me!")
             }
             AnimatedVisibility(showContent) {

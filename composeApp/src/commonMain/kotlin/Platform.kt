@@ -11,5 +11,3 @@ expect fun getPlatform(): Platform
 
 @Composable
 expect fun font(name: String, res: String, weight: FontWeight, style: FontStyle): Font
-
-expect fun getApiKey(): String
