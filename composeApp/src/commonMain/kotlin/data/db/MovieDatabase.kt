@@ -5,11 +5,15 @@ import app.cash.sqldelight.db.SqlDriver
 class MovieDatabase(private val driver: SqlDriver) {
     private var database: Database = Database(driver)
     private var queries: DatabaseQueries = database.databaseQueries
-    fun insertFavoriteMovie(movieDto: MovieDto) {
+    fun insertMovie(movieDto: MovieDto) {
         queries.insertMovieObj(movieDto)
     }
 
-    fun deleteFavoriteMovie(id: Long) {
+    fun updateFavoriteById(isFavorite: Long, id: Long) {
+        queries.updateFavoriteById(isFavorite, id)
+    }
+
+    fun deleteMovie(id: Long) {
         queries.deleteMovie(id)
     }
 
@@ -17,7 +21,7 @@ class MovieDatabase(private val driver: SqlDriver) {
         return queries.getMovieById(id).executeAsOneOrNull()
     }
 
-    fun getAllFavoriteMovies(): List<MovieDto> {
+    fun getAllMovies(): List<MovieDto> {
         return queries.selectAllMovies().executeAsList()
     }
 }

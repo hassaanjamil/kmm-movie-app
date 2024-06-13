@@ -9,7 +9,6 @@ CREATE TABLE MovieDto (
     name TEXT NOT NULL,
     imagePath TEXT NOT NULL,
     release TEXT NOT NULL,
---     creationDate TEXT DEFAULT (datetime('now')) NOT NULL,
     modifiedDate TEXT DEFAULT (datetime('now')) NOT NULL,
     isFavorite INTEGER NOT NULL
 );
@@ -35,6 +34,10 @@ INSERT INTO MovieDto (id, name, imagePath, release, isFavorite) VALUES ?;
 
 updateMovie:
 UPDATE MovieDto SET name = :name, imagePath = :imagePath, release = :release, isFavorite = :isFavorite, modifiedDate = datetime('now') WHERE id = :id;
+
+updateFavoriteById:
+UPDATE MovieDto SET isFavorite = :isFavorite, modifiedDate = datetime('now') WHERE id = :id;
+
 
 deleteMovie:
 DELETE FROM MovieDto WHERE id = :id;

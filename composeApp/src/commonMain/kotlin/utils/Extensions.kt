@@ -13,25 +13,43 @@ fun Movie.toMovieDto(): MovieDto {
         this.id,
         this.name,
         this.image,
-        this.year ?: "",
+        this.releaseDate ?: "",
         getCurrentDateTimeStamp(),
         if (this.isFavorite == true) 1 else 0
     )
 }
 
 fun MovieDto.toMovie(): Movie {
-    return Movie(this.id, this.name, this.imagePath, "1.1", this.release, this.isFavorite == 1L)
+    return Movie(this.id, this.name, this.imagePath, this.release, this.isFavorite == 1L)
 }
 
 fun Results.toMovieDto(): MovieDto {
     return MovieDto(
-        this.id?.toLong()!!,
+        this.id!!,
         this.title!!,
         this.posterPath!!,
         this.releaseDate ?: "",
         getCurrentDateTimeStamp(),
         if (this.isFavorite) 1 else 0
     )
+}
+
+fun Results.toMovie(): Movie {
+    return Movie(
+        this.id!!,
+        this.title!!,
+        this.posterPath!!,
+        this.releaseDate ?: "",
+        this.isFavorite
+    )
+}
+
+fun List<Results>.toListMovie(): List<Movie> {
+    return this.map { result -> result.toMovie() }
+}
+
+fun List<MovieDto>.toListMovie(): List<Movie> {
+    return this.map { movieDto -> movieDto.toMovie() }
 }
 
 fun getCurrentDateTimeStamp(): String {

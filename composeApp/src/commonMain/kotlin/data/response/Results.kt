@@ -9,7 +9,7 @@ data class Results(
     var adult: Boolean? = null,
     @SerialName("backdrop_path") var backdropPath: String? = null,
     @SerialName("gender_ids") var genderIds: List<Int>? = null,
-    var id: Int? = null,
+    var id: Long? = null,
     @SerialName("original_language") var originalLanguage: String? = null,
     @SerialName("original_title") var originalTitle: String? = null,
     var overview: String? = null,

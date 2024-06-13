@@ -21,11 +21,8 @@ import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
@@ -33,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import com.app.kmm.movieapp.resources.MontserratAlternates_Bold
 import com.app.kmm.movieapp.resources.Res
 import com.app.kmm.movieapp.resources.favorite
-import data.response.Results
+import data.Movie
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
 import kotlinx.coroutines.launch
@@ -41,10 +38,10 @@ import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun MovieItem(data: Results, onFavoritePress: (id: Int, favorite: Boolean) -> Unit) {
+fun MovieItem(movie: Movie, onFavoritePress: (isFavorite: Boolean, id: Long) -> Unit) {
     val coroutineScope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
-    var isFavorite by remember { mutableStateOf(false) }
+//    var isFavorite by remember { mutableStateOf(false) }
 
     ElevatedCard(
         modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
@@ -55,8 +52,8 @@ fun MovieItem(data: Results, onFavoritePress: (id: Int, favorite: Boolean) -> Un
         Row(modifier = Modifier.fillMaxWidth().padding(5.dp)) {
             KamelImage(
                 modifier = Modifier.height(100.dp).width(100.dp),
-                resource = asyncPainterResource(data = "https://image.tmdb.org/t/p/w500/${data.posterPath}"),
-                contentDescription = data.originalTitle,
+                resource = asyncPainterResource(data = "https://image.tmdb.org/t/p/w500/${movie.image}"),
+                contentDescription = movie.name,
                 onLoading = { progress ->
                     CircularProgressIndicator(progress = {
                         progress
@@ -73,12 +70,12 @@ fun MovieItem(data: Results, onFavoritePress: (id: Int, favorite: Boolean) -> Un
                 })
             Column {
                 Text(
-                    text = data.originalTitle!!,
+                    text = movie.name,
                     style = MaterialTheme.typography.bodyLarge,
                     fontFamily = FontFamily(Font(Res.font.MontserratAlternates_Bold))
                 )
                 Text(
-                    text = data.releaseDate!!,
+                    text = movie.releaseDate!!,
                     style = MaterialTheme.typography.bodyMedium,
                     fontFamily = FontFamily(Font(Res.font.MontserratAlternates_Bold))
                 )
@@ -87,13 +84,13 @@ fun MovieItem(data: Results, onFavoritePress: (id: Int, favorite: Boolean) -> Un
                     horizontalArrangement = Arrangement.End,
                 ) {
                     Icon(
-                        imageVector = if (data.isFavorite) Icons.Rounded.Favorite else Icons.Rounded.FavoriteBorder,
+                        imageVector = if (movie.isFavorite!!) Icons.Rounded.Favorite else Icons.Rounded.FavoriteBorder,
                         contentDescription = stringResource(Res.string.favorite),
                         modifier = Modifier.size(30.dp).clickable {
-                            isFavorite = !isFavorite
-                            onFavoritePress(data.id!!, isFavorite)
+//                            isFavorite = !movie.isFavorite!!
+                            onFavoritePress(!movie.isFavorite!!, movie.id)
                         },
-                        tint = if (data.isFavorite) Color.Red else Color.Gray,
+                        tint = if (movie.isFavorite!!) Color.Red else Color.Gray,
                     )
                 }
 
